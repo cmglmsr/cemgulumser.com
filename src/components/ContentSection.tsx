@@ -82,7 +82,8 @@ const ContentSection: React.FC<ContentSectionProps> = ({
             Computer Scientist specialized in Cybersecurity
           </p>
           <p className="text-lg text-amber-200">
-            My name is Mustafa Cem Gülümser. I am a Bilkent University Computer Science graduate and have a MSc in Software and Systems Security from University of Oxford. I have 3+ years of experience in security software development and cybersecurity research.
+            My name is Mustafa Cem Gülümser. I am a Bilkent University Computer Science graduate and have a MSc in Software and Systems Security from University of Oxford. 
+            I have 3+ years of experience in security software development and cybersecurity research.
           </p>
         </div>
       </section>
