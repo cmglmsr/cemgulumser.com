@@ -24,14 +24,14 @@ const Sidebar = ({
 }: SidebarProps) => {
   return (
     <div
-      className={`bg-slate-800 p-4 transition-all duration-500 ease-in-out shadow-xl ${expanded ? "w-64" : "w-20"} flex flex-col h-screen`}
+      className={`bg-stone-900 p-4 transition-all duration-500 ease-in-out shadow-xl ${expanded ? "w-64" : "w-20"} flex flex-col h-screen sticky top-0`}
     >
       <button
-        className={`mb-8 flex items-center p-2 rounded-xl hover:bg-slate-700 transition-all duration-300 cursor-pointer ${expanded ? "gap-2" : "justify-center"}`}
+        className={`mb-8 flex items-center p-2 rounded-xl hover:bg-stone-800 transition-all duration-500 ease-in-out cursor-pointer ${expanded ? "gap-2" : "justify-center"}`}
         onClick={() => setExpanded(!expanded)}
       >
-        <Menu size={20} className="text-slate-200" />
-        {expanded && <span className="font-bold text-slate-200">Menu</span>}
+        <Menu size={20} className="text-amber-100" />
+        {expanded && <span className="font-bold text-amber-100 transition-all duration-500 ease-in-out">Menu</span>}
       </button>
 
       <nav className="flex flex-col gap-3">
@@ -39,16 +39,16 @@ const Sidebar = ({
           <button
             key={page.id}
             onClick={() => setActivePage(page.id)}
-            className={`flex items-center p-3 rounded-xl font-medium transition-all duration-300 cursor-pointer hover:bg-slate-700 ${
+            className={`flex items-center p-3 rounded-xl font-medium transition-all duration-500 ease-in-out cursor-pointer hover:bg-stone-800 ${
               expanded ? "gap-3" : "justify-center"
             } ${
               activePage === page.id 
-                ? "bg-slate-600 text-slate-100" 
-                : "text-slate-300 hover:text-slate-100"
+                ? "bg-stone-700 text-amber-100" 
+                : "text-amber-200 hover:text-amber-100"
             }`}
           >
             {page.icon}
-            {expanded && <span className="transition-opacity duration-300">{page.name}</span>}
+            {expanded && <span className="transition-all duration-500 ease-in-out whitespace-nowrap">{page.name}</span>}
           </button>
         ))}
       </nav>

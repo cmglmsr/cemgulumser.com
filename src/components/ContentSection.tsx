@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface ContentSectionProps {
   activePage: string;
@@ -8,6 +8,21 @@ interface ContentSectionProps {
 const ContentSection: React.FC<ContentSectionProps> = ({
   activePage = "home",
 }) => {
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
   const renderListPage = (title: string) => (
     <motion.div
       className="p-0 max-w-full mx-auto"
@@ -26,7 +41,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
               className="flex flex-col md:flex-row items-center gap-8 bg-stone-700 rounded-2xl p-8 shadow-xl w-full"
             >
               <img
-                src={`https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=200&q=80&text=${title}+${i}`}
+                src={`/images/${title.toLowerCase().replace(' & ', '-').replace(' ', '-')}/${i}.jpg`}
                 alt={`${title} ${i}`}
                 className="w-52 h-52 rounded-lg object-cover shadow-md"
               />
@@ -57,7 +72,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 px-6 bg-gradient-to-br from-stone-700 to-stone-900 text-amber-100">
         <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80"
+          src="/images/profile/profile.jpg"
           alt="Profile"
           className="w-72 h-auto rounded-xl shadow-2xl border-4 border-stone-600 object-cover"
         />
@@ -67,37 +82,68 @@ const ContentSection: React.FC<ContentSectionProps> = ({
             Computer Scientist specialized in Cybersecurity
           </p>
           <p className="text-lg text-amber-200">
-            [Placeholder for a short bio about you]
+            My name is Mustafa Cem Gülümser. I am a Bilkent University Computer Science graduate and have a MSc in Software and Systems Security from University of Oxford. I have 3+ years of experience in security software development and cybersecurity research.
           </p>
         </div>
       </section>
 
       {/* Facts Section */}
       <section className="min-h-screen flex flex-col justify-center px-6 py-20 bg-stone-800 text-amber-100 w-full">
-        <h2 className="text-4xl font-bold mb-16 text-center">
+        <motion.h2 
+          className="text-4xl font-bold mb-16 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
           Some Facts About Me
-        </h2>
-        <div className="space-y-16 w-full">
+        </motion.h2>
+        <motion.div 
+          className="space-y-16 w-full"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={staggerContainer}
+        >
           {[1, 2, 3].map((i) => (
-            <div
+            <motion.div
               key={i}
               className="flex flex-col md:flex-row items-center gap-8 bg-stone-700 rounded-2xl p-8 shadow-xl w-full"
+              variants={fadeInUp}
+              transition={{ duration: 0.6 }}
             >
               <img
-                src={`https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=200&q=80&text=Fact+${i}`}
+                src={`/images/facts/fact-${i}.jpg`}
                 alt={`Fact ${i}`}
                 className="w-52 h-52 rounded-lg object-cover shadow-md"
               />
               <p className="text-lg">[Description of fact {i}]</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Links Section */}
       <section className="py-16 px-6 bg-stone-900 text-center text-amber-100">
-        <h2 className="text-2xl font-semibold mb-6">Find Me Online</h2>
-        <div className="flex justify-center gap-10 font-medium">
+        <motion.h2 
+          className="text-2xl font-semibold mb-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+        >
+          Find Me Online
+        </motion.h2>
+        <motion.div 
+          className="flex justify-center gap-10 font-medium"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <a href="#" className="hover:underline cursor-pointer">
             GitHub
           </a>
@@ -107,7 +153,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
           <a href="#" className="hover:underline cursor-pointer">
             npm
           </a>
-        </div>
+        </motion.div>
       </section>
     </motion.div>
   );
