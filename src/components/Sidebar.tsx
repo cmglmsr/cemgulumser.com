@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Home, Briefcase, Book, Award, FlaskConical, Menu } from "lucide-react";
+import { Home, Briefcase, Book, Award, Trophy, FlaskConical, Menu, Github, Linkedin, ExternalLink } from "lucide-react";
 
 interface SidebarProps {
   activePage: string;
@@ -12,7 +12,8 @@ const pages = [
   { name: "Home", icon: <Home size={20} />, id: "home" },
   { name: "Experience", icon: <Briefcase size={20} />, id: "experience" },
   { name: "Education", icon: <Book size={20} />, id: "education" },
-  { name: "Projects & Awards", icon: <Award size={20} />, id: "projects" },
+  { name: "Projects", icon: <Award size={20} />, id: "projects" },
+  { name: "Awards", icon: <Trophy size={20} />, id: "awards" },
   { name: "Research", icon: <FlaskConical size={20} />, id: "research" },
 ];
 
@@ -34,7 +35,7 @@ const Sidebar = ({
         {expanded && <span className="font-bold text-amber-100 transition-all duration-500 ease-in-out">Menu</span>}
       </button>
 
-      <nav className="flex flex-col gap-3">
+      <nav className="flex flex-col gap-3 flex-1">
         {pages.map((page) => (
           <button
             key={page.id}
@@ -52,6 +53,45 @@ const Sidebar = ({
           </button>
         ))}
       </nav>
+
+      {/* Social Links */}
+      <div className="mt-auto pt-4 border-t border-stone-700">
+        <div className={`flex ${expanded ? "flex-col gap-2" : "flex-col gap-2"}`}>
+          <a
+            href="https://github.com/cmglmsr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center p-3 rounded-xl font-medium transition-all duration-500 ease-in-out cursor-pointer hover:bg-stone-800 text-amber-200 hover:text-amber-100 ${
+              expanded ? "gap-3" : "justify-center"
+            }`}
+          >
+            <Github size={20} />
+            {expanded && <span className="transition-all duration-500 ease-in-out whitespace-nowrap">GitHub</span>}
+          </a>
+          <a
+            href="https://www.linkedin.com/in/cem-g%C3%BCl%C3%BCmser-2b685a213/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center p-3 rounded-xl font-medium transition-all duration-500 ease-in-out cursor-pointer hover:bg-stone-800 text-amber-200 hover:text-amber-100 ${
+              expanded ? "gap-3" : "justify-center"
+            }`}
+          >
+            <Linkedin size={20} />
+            {expanded && <span className="transition-all duration-500 ease-in-out whitespace-nowrap">LinkedIn</span>}
+          </a>
+          <a
+            href="https://www.npmjs.com/~cmglmsr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`flex items-center p-3 rounded-xl font-medium transition-all duration-500 ease-in-out cursor-pointer hover:bg-stone-800 text-amber-200 hover:text-amber-100 ${
+              expanded ? "gap-3" : "justify-center"
+            }`}
+          >
+            <ExternalLink size={20} />
+            {expanded && <span className="transition-all duration-500 ease-in-out whitespace-nowrap">npm</span>}
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
