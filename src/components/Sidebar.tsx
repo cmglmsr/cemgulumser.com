@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import { Home, Briefcase, Book, Award, Trophy, FlaskConical, Menu, Github, Linkedin, ExternalLink } from "lucide-react";
-
-interface SidebarProps {
-  activePage: string;
-  setActivePage: (page: string) => void;
-  expanded?: boolean;
-  setExpanded?: (expanded: boolean) => void;
-}
+import { useNavigate, useLocation } from "react-router-dom";
+import { Home, Briefcase, Book, Award, Trophy, FlaskConical, Menu, Github, Linkedin, ExternalLink, FileText } from "lucide-react";
 
 const pages = [
-  { name: "Home", icon: <Home size={20} />, id: "home" },
-  { name: "Experience", icon: <Briefcase size={20} />, id: "experience" },
-  { name: "Education", icon: <Book size={20} />, id: "education" },
-  { name: "Projects", icon: <Award size={20} />, id: "projects" },
-  { name: "Awards", icon: <Trophy size={20} />, id: "awards" },
-  { name: "Research", icon: <FlaskConical size={20} />, id: "research" },
+  { name: "Home", icon: <Home size={20} />, path: "/" },
+  { name: "Experience", icon: <Briefcase size={20} />, path: "/experience" },
+  { name: "Education", icon: <Book size={20} />, path: "/education" },
+  { name: "Projects", icon: <Award size={20} />, path: "/projects" },
+  { name: "Awards", icon: <Trophy size={20} />, path: "/awards" },
+  { name: "Research", icon: <FlaskConical size={20} />, path: "/research" },
+  { name: "Blog", icon: <FileText size={20} />, path: "/blog" },
 ];
 
-const Sidebar = ({
-  activePage = "home",
-  setActivePage = () => {},
-  expanded = true,
-  setExpanded = () => {},
-}: SidebarProps) => {
+const Sidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(true);
+
+  const isActivePage = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
   return (
     <div
       className={`bg-stone-900 p-4 transition-all duration-500 ease-in-out shadow-xl ${expanded ? "w-64" : "w-20"} flex flex-col h-screen sticky top-0`}
@@ -38,12 +38,12 @@ const Sidebar = ({
       <nav className="flex flex-col gap-3 flex-1">
         {pages.map((page) => (
           <button
-            key={page.id}
-            onClick={() => setActivePage(page.id)}
+            key={page.path}
+            onClick={() => navigate(page.path)}
             className={`flex items-center p-3 rounded-xl font-medium transition-all duration-500 ease-in-out cursor-pointer hover:bg-stone-800 ${
               expanded ? "gap-3" : "justify-center"
             } ${
-              activePage === page.id 
+              isActivePage(page.path) 
                 ? "bg-stone-700 text-amber-100" 
                 : "text-amber-200 hover:text-amber-100"
             }`}

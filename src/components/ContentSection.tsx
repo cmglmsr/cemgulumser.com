@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import BlogSlideshow from "./BlogSlideshow";
+import { BlogPost } from "../types/blog";
 
 interface ContentSectionProps {
   activePage: string;
@@ -8,6 +11,12 @@ interface ContentSectionProps {
 const ContentSection: React.FC<ContentSectionProps> = ({
   activePage = "home",
 }) => {
+  const navigate = useNavigate();
+
+  const handlePostClick = (post: BlogPost) => {
+    navigate(`/blog?id=${post.blogId}`);
+  };
+
   // Animation variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 60 },
@@ -352,6 +361,9 @@ const ContentSection: React.FC<ContentSectionProps> = ({
         </div>
       </section>
 
+      {/* Blog Slideshow Section */}
+      <BlogSlideshow onPostClick={handlePostClick} />
+
       {/* Facts Section */}
       <section className="min-h-screen flex flex-col justify-center px-6 py-20 bg-stone-800 text-amber-100 w-full">
         <motion.h2 
@@ -431,6 +443,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
   );
 
   const renderContent = () => {
+    // Handle regular page navigation
     switch (activePage) {
       case "home":
         return renderHomePage();
