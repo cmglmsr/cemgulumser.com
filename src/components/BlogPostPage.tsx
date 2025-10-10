@@ -383,44 +383,44 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onBack, onRelatedPost
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-stone-700 rounded-2xl p-8">
+          <div className="bg-stone-700 rounded-2xl p-4 md:p-8">
             <img
               src={post.author.avatar}
               alt={post.author.name}
-              className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-stone-600"
+              className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto mb-4 border-4 border-stone-600"
             />
-            <h4 className="text-2xl font-bold mb-2 text-amber-100">{post.author.name}</h4>
-            <p className="text-amber-200 mb-6">
+            <h4 className="text-xl md:text-2xl font-bold mb-2 text-amber-100">{post.author.name}</h4>
+            <p className="text-sm md:text-base text-amber-200 mb-6">
               Computer Scientist specialized in Cybersecurity. MSc in Software and Systems Security from University of Oxford. 
               Senior Security Engineer at Garanti BBVA with 3+ years of experience in security software development.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
               <a
                 href="https://github.com/cmglmsr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100 text-sm md:text-base"
               >
                 <Github size={16} />
-                GitHub
+                <span className="whitespace-nowrap">GitHub</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/cem-g%C3%BCl%C3%BCmser-2b685a213/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100 text-sm md:text-base"
               >
                 <Linkedin size={16} />
-                LinkedIn
+                <span className="whitespace-nowrap">LinkedIn</span>
               </a>
               <a
                 href="https://www.npmjs.com/~cmglmsr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100"
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-stone-600 rounded-lg hover:bg-stone-500 transition-colors text-amber-200 hover:text-amber-100 text-sm md:text-base"
               >
                 <Globe size={16} />
-                npm
+                <span className="whitespace-nowrap">npm</span>
               </a>
             </div>
           </div>
