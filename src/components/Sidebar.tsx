@@ -15,7 +15,7 @@ const pages = [
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   const isActivePage = (path: string) => {
     if (path === "/") {
